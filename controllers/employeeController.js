@@ -91,3 +91,19 @@ export async function createEmployee(req, res) {
     }
   });
 }
+// controllers/employeeController.js
+
+
+export async function getEmployees(req, res) {
+  try {
+    const employees = await Employee.find();
+    res.status(200).json(employees);
+  } catch (error) {
+    console.error("Error in fetching employees:", error);
+    res.status(500).json({
+      success: false,
+      error: "Internal Server Error",
+      message: "Error in fetching employees",
+    });
+  }
+}
